@@ -202,60 +202,25 @@ const Page = () => {
           Customers | Devias Kit
         </title>
       </Head>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: 8
-        }}
-      >
+      <Box component="main" sx={{ flexGrow: 1, py: 8 }}>
         <Container maxWidth="xl">
           <Stack spacing={3}>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              spacing={4}
-            >
+            <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
                 <Typography variant="h4">
                   Customers
                 </Typography>
-                <Stack
-                  alignItems="center"
-                  direction="row"
-                  spacing={1}
-                >
-                  <Button
-                    color="inherit"
-                    startIcon={(
-                      <SvgIcon fontSize="small">
-                        <ArrowUpOnSquareIcon />
-                      </SvgIcon>
-                    )}
-                  >
+                <Stack alignItems="center" direction="row" spacing={1}>
+                  <Button color="inherit" startIcon={(<SvgIcon fontSize="small"> <ArrowUpOnSquareIcon /> </SvgIcon>)}>
                     Import
                   </Button>
-                  <Button
-                    color="inherit"
-                    startIcon={(
-                      <SvgIcon fontSize="small">
-                        <ArrowDownOnSquareIcon />
-                      </SvgIcon>
-                    )}
-                  >
+                  <Button color="inherit" startIcon={( <SvgIcon fontSize="small"> <ArrowDownOnSquareIcon /> </SvgIcon> )} >
                     Export
                   </Button>
                 </Stack>
               </Stack>
               <div>
-                <Button
-                  startIcon={(
-                    <SvgIcon fontSize="small">
-                      <PlusIcon />
-                    </SvgIcon>
-                  )}
-                  variant="contained"
-                >
+                <Button startIcon={( <SvgIcon fontSize="small"> <PlusIcon /> </SvgIcon> )} variant="contained" >
                   Add
                 </Button>
               </div>
