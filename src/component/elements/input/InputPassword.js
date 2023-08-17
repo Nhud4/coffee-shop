@@ -7,11 +7,11 @@ export default function InputPassword({ label, onChange, value }){
   const [type, setType] = useState(true);
 
   const styles = {
-    activeBox: 'flex items-center p-2 rounded border-2 border-nero-30 bg-nero-10 h-[2.5rem]',
-    inactiveBox: 'flex items-center p-2 rounded border-2 border-black-300 h-[2.5rem]',
+    activeBox: 'flex items-center p-2 rounded border-2 border-cyn-20 bg-cyn-20 h-[2.5rem]',
+    inactiveBox: 'flex items-center p-2 rounded border-2 border-cyn-20 h-[2.5rem]',
     label: 'text-base font-medium text-black-500 pb-2',
-    inputBox: 'w-full text-sm text-black-500 bg-transparent outline-none border-none',
-    inputActive: 'w-full text-sm text-black-500 bg-nero-10 outline-none border-none'
+    inputBox: 'w-full text-base text-black-500 bg-transparent outline-none border-none',
+    inputActive: 'w-full text-base text-white bg-cyn-20  outline-none border-none capitalize'
   };
 
   return (
@@ -26,15 +26,27 @@ export default function InputPassword({ label, onChange, value }){
           autoComplete="off"
         />
 
-        <Image
-          src="/assets/icons/eye-off.svg"
-          className="cursor-pointer"
-          alt="icon"
-          width={25}
-          height={25}
-          priority
-          onClick={() => setType(!type)}
-        />
+        {value ? (
+          <Image
+            src="/assets/icons/eye_hide.svg"
+            className="cursor-pointer"
+            alt="icon"
+            width={25}
+            height={25}
+            priority
+            onClick={() => setType(!type)}
+          />
+        ):(
+          <Image
+            src="/assets/icons/eye-off.svg"
+            className="cursor-pointer"
+            alt="icon"
+            width={25}
+            height={25}
+            priority
+            onClick={() => setType(!type)}
+          />
+        )}
       </div>
     </div>
   );

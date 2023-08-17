@@ -15,7 +15,7 @@ export default function CardMenu(){
         <div className="space-y-4 px-2">
           <div className="mb-6">
             <h1 className="text-2xl font-semibold">Coffee Menu</h1>
-            <hr className="w-20 border-natural-20 border-2"/>
+            <hr className="w-20 border-cyn-20 border-2"/>
           </div>
           <div className="flex justify-center items-center">
             <Image className="object-cover md:h-48 md:w-48 h-32 w-32 -mr-[6rem] z-10" src={require('@/image/IMG_05.jpg')} alt="image1" />
@@ -121,7 +121,7 @@ export default function CardMenu(){
         <div className="space-y-4 px-2">
           <div className="mb-6">
             <h1 className="text-2xl font-semibold">Ice Menu</h1>
-            <hr className="w-20 border-natural-20 border-2"/>
+            <hr className="w-20 border-cyn-20 border-2"/>
           </div>
           <div className="flex justify-center items-center">
             <Image className="object-cover md:h-48 md:w-48 h-32 w-32 -mr-[6rem] z-10" src={require('@/image/IMG_02.jpg')} alt="image1" />

@@ -7,7 +7,7 @@ import CardAbout from '@/component/card/CardAbout';
 export default function Home() {
   return (
     <div>
-      <Navigation />
+      <Navigation page="home"/>
 
       <CardLayout />
 

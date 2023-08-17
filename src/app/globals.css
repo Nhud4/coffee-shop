@@ -23,6 +23,22 @@ body {
 .container {
   width: 100%;
 }
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner{
+  background-color: #F8B70B;
+  border-color: #F8B70B;
+}
+
+.ant-radio-wrapper .ant-radio-inner{
+  border-color: #F8B70B;
+}
+
+.ant-radio-wrapper{
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
