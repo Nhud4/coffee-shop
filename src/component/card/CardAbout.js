@@ -15,7 +15,7 @@ export default function CardAbout(){
             Dimulai dari satu outlet kecil di depan satu minimarket di kota Surabaya, kami berkembang menjadi jaringan kedai kopi nasional dengan cabang tersebar di banyak kota di Indonesia.
           </p>
           <p>
-            Di tahun 2012, kami adalah pionir dan penggagas dalam gerakan bangga terhadap kopi Indonesia dengan kampanye "Yes I Drink Indonesian Coffee."
+            Di tahun 2012, kami adalah pionir dan penggagas dalam gerakan bangga terhadap kopi Indonesia dengan kampanye `Yes I Drink Indonesian Coffee.`
           </p>
           <p>
             Di tahun 2017, kami mendapatkan Penghargaan Indonesia Franchise Award dari kementerian Perdagangan sebagai Pemenang Nasional. Penghargaan ini serta diserahkan langsung oleh bapak Presiden RI Joko Widodo.
