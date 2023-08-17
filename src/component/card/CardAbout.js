@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function CardAbout(){
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-8 pt-10 pb-6">
-      <div className="space-y-4 pl-[5rem]">
+      <div className="space-y-4 md:pl-[5rem]">
         <h1 className="text-[3rem] font-bold text-nero-40">
             Cerita Kami
         </h1>
