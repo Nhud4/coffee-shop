@@ -43,10 +43,16 @@ body {
   .container {
     max-width: 640px;
   }
+  .table_container {
+    overflow-x: auto;
+  }
 }
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
+  }
+  .table_container {
+    overflow-x: auto;
   }
 }
 @media (min-width: 1140px) {

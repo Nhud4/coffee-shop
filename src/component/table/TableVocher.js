@@ -51,7 +51,7 @@ export default function TableVocher(){
   };
 
   return(
-    <div>
+    <div style={{ overflowX: 'auto' }}>
       <Table
         columns={columns}
         pagination={pagination}
