@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { Table } from 'antd';
-import data from './dataDummy';
+import dataTesting from '@/utils/data/dataTesting';
 
 export default function TableCustomer(){
   const columns = [
@@ -56,7 +58,7 @@ export default function TableCustomer(){
       <Table
         columns={columns}
         pagination={pagination}
-        dataSource={data?.map((data, i) => ({
+        dataSource={dataTesting?.map((data, i) => ({
           ...data,
           index: i + 1
         })

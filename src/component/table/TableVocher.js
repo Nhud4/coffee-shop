@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Table } from 'antd';
-import data from './dataDummy';
+import dataTesting from '@/utils/data/dataTesting';
 
 export default function TableVocher(){
   const [status, setStatus] = useState('Belum Digunakan');
@@ -55,7 +55,7 @@ export default function TableVocher(){
       <Table
         columns={columns}
         pagination={pagination}
-        dataSource={data?.map((data, i) => ({
+        dataSource={dataTesting?.map((data, i) => ({
           responsden: data.responsden,
           code: `KDV00R${i + 1}`,
           index: i + 1,

@@ -1,4 +1,4 @@
-const data = [
+const dataTesting = [
   {
     no: 1,
     responsden: 'Responsden 1',
@@ -501,4 +501,4 @@ const data = [
   }
 ];
 
-export default data;
+export default dataTesting;
