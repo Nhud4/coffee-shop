@@ -15,7 +15,7 @@ export default function CardLogin(){
   const disabled = Boolean(username && password);
 
   const handleSubmit = () => {
-    const isValid = Boolean(username === 'admin' && password === 'admin');
+    const isValid = Boolean(username === 'Admin' && password === 'admin');
 
     if(isValid){
       router.push('/dashboard');
