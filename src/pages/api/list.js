@@ -4,15 +4,16 @@ import Wrapper from '@/utils/helper/wrapper';
 const dataDomain = new Data();
 const wrapper = new Wrapper();
 
-export default async function insert(req, res){
-  const payload = { ...req.body };
-  const result = await dataDomain.insertData(payload);
+export default async function list(req, res){
+  const payload = { ...req.query };
+  const result = await dataDomain.list(payload);
   if(result.err)return wrapper.responseError(res, result.err);
 
   return wrapper.response(res, 200, {
     message: 'success',
     success: true,
     code: 200,
-    data: { ...payload }
+    data: result.data,
+    meta: result.meta
   });
 }

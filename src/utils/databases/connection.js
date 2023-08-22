@@ -38,7 +38,7 @@ async function findOne(params, collection){
   try{
     const client = await clientPromise;
     const connection = await client.db('coffee');
-    const recordset = await connection.collection(collection).findOne(params);
+    const recordset = await connection.collection('customers').findOne(params);
     if (_.isEmpty(recordset)) {
       return wrapper.data(null);
     }
@@ -89,21 +89,14 @@ async function countData(){
   }
 }
 
-async function updateOne(params, updateDocument, increment){
-  const query =  {};
-  if (increment){
-    query.$inc = increment;
-  }
-  if (updateDocument){
-    query.$set = updateDocument;
-  }
+async function updateOne(params, updateDocument){
   try{
     const client = await clientPromise;
     const connection = await client.db('coffee');
     const db = await connection.collection('customers');
-    const data = await db.updateOne(params, query);
-    if (data.modifiedCount >= 0) {
-      const recordset = await this.findOne(params);
+    const data = await db.updateOne(params, { $set: updateDocument }, { upsert: true });
+    if (data.upsertedCount >= 0) {
+      const recordset = await db.findOne(params);
       return wrapper.data(recordset.data);
     }
 
