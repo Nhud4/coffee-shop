@@ -9,10 +9,10 @@ export default async function insert(req, res){
   const result = await dataDomain.insertData(payload);
   if(result.err)return wrapper.responseError(res, result.err);
 
-  return wrapper.response(res, 200, {
+  return wrapper.response(res, 201, {
     message: 'success',
     success: true,
-    code: 200,
+    code: 201,
     data: { ...payload }
   });
 }

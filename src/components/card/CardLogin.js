@@ -3,23 +3,27 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Server from '@/utils/server/server';
+import { saveToken } from '@/utils/server/localstorage';
 import InputText from '../elements/input/InputText';
 import InputPassword from '../elements/input/InputPassword';
 import Button from '../elements/button/Button';
 
 export default function CardLogin(){
+  const server = new Server();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
   const disabled = Boolean(username && password);
 
-  const handleSubmit = () => {
-    const isValid = Boolean(username === 'Admin' && password === 'admin');
+  const handleSubmit = async() => {
 
-    if(isValid){
+    const result = await server.login(username, password);
+    if(result.code === 201){
+      saveToken(result.data.accessToken, result.data.expAccessToken);
       router.push('/dashboard');
-    }else{
+    } else {
       alert('Username Atau Password Salah');
     }
   };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'antd';
 
 
-export default function ModalToken({ isOpen, handleColse }){
+export default function ModalToken({ isOpen, handleColse, name, token }){
   return(
     <Modal title="Promo" open={isOpen} footer={null} onCancel={handleColse}>
       <div className="text-center space-y-2 tracking-wide">
@@ -16,11 +16,11 @@ export default function ModalToken({ isOpen, handleColse }){
         <h1 className="text-xl font-semibold">Code Anda</h1>
         <div className="flex justify-center">
           <p className="bg-cyn-20 px-4 py-2 rounded-md text-white text-x2l font-semibold">
-            DEDECANTIK
+            {token}
           </p>
         </div>
         <p className="text-base">Atas Nama</p>
-        <p className="text-xl font-semibold">Sefia</p>
+        <p className="text-xl font-semibold">{name}</p>
       </div>
     </Modal>
   );

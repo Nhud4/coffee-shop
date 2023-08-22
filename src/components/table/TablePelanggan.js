@@ -1,10 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
-import dataTesting from '@/utils/dataTesting';
+import Server from '@/utils/server/server';
 
 export default function TableCustomer(){
+  const server = new Server();
+  const [data, setData] = useState([]);
+  const [meta, setMeta] = useState({});
+
+  const list = async(params) => {
+    const result = await server.listData(params);
+    if(result.code === 200){
+      setData(result.data);
+      setMeta(result.meta);
+    }
+  };
+
+  useEffect(() => {
+    list({
+      page: 1,
+      size: 10,
+    });
+  },[]);
+
   const columns = [
     {
       title: 'No',
@@ -13,8 +32,8 @@ export default function TableCustomer(){
     },
     {
       title: 'Nama',
-      dataIndex: 'responsden',
-      key: 'responsden',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: 'Pelayanan',
@@ -50,7 +69,7 @@ export default function TableCustomer(){
 
   const pagination = {
     current: 1,
-    pageSize: 10,
+    pageSize: 10
   };
 
   return(
@@ -58,7 +77,7 @@ export default function TableCustomer(){
       <Table
         columns={columns}
         pagination={pagination}
-        dataSource={dataTesting?.map((data, i) => ({
+        dataSource={data?.map((data, i) => ({
           ...data,
           index: i + 1
         })

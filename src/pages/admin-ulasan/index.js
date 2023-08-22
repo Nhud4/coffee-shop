@@ -1,10 +1,19 @@
-'use client';
-
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import NavigationDashboard from '@/components/navigasi/NavigasiDashboard';
 import TableVocher from '@/components/table/TableVocher';
+import { getToken } from '@/utils/server/localstorage';
 
 export default function AdminUlasan(){
+  const router = useRouter();
+  const userToken = getToken();
+
+  useEffect(() => {
+    if(!userToken){
+      router.push('/login');
+    }
+  }, []);
+
   return (
     <div>
       <NavigationDashboard page={'dataUlasan'}/>

@@ -21,7 +21,7 @@ export default class Server{
   }
 
   async listData(params){
-    const endPoint = `/api/data/list?size=${params.size}&page=${params.page}&sort=nama_mahasiswa&order=${params.order}&search=${params.search}`;
+    const endPoint = `/api/list?page=${params.page}&size=${params.size}&sort=name`;
     const options ={
       method: 'GET',
     };
@@ -34,7 +34,7 @@ export default class Server{
 
   async inputData(data){
     const JSONdata = JSON.stringify(data);
-    const endPoint = '/api/data/insert';
+    const endPoint = '/api/insert';
     const options ={
       method: 'POST',
       headers: {

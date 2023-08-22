@@ -1,11 +1,26 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
-import dataTesting from '@/utils/dataTesting';
+import Server from '@/utils/server/server';
 
 export default function TableVocher(){
-  const [status, setStatus] = useState('Belum Digunakan');
+  const server = new Server();
+  const [data, setData] = useState([]);
+
+  const list = async(params) => {
+    const result = await server.listData(params);
+    if(result.code === 200){
+      setData(result.data);
+    }
+  };
+
+  useEffect(() => {
+    list({
+      page: 1,
+      size: 10,
+    });
+  },[]);
 
   const columns = [
     {
@@ -15,28 +30,30 @@ export default function TableVocher(){
     },
     {
       title: 'Nama',
-      dataIndex: 'responsden',
-      key: 'responsden',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: 'Kode Vocher',
-      dataIndex: 'code',
-      key: 'code',
+      dataIndex: 'token',
+      key: 'token',
     },
     {
       title: 'Status Vocher',
-      dataIndex: 'status',
-      key: 'status',
+      dataIndex: 'tokenUse',
+      key: 'tokenUse',
     },
     {
       title: 'Aksi',
-      dataIndex: 'index',
-      key: 'index',
-      render: function Action(){
-        return(
+      dataIndex: 'id',
+      key: 'id',
+      render: function Action(value){
+        const filter = data?.filter(({ id }) => value === id);
+        const used = filter[0].tokenUse === 'Digunakan' ? true : false;
+        return (
           <button
-            className="bg-cyn-20 px-4 py-2 rounded-md text-white"
-            onClick={() => setStatus('Digunakan')}
+            className={used? 'bg-nero-20 px-4 py-2 rounded-md text-white':'bg-cyn-20 px-4 py-2 rounded-md text-white'}
+            disabled={used}
           >
             Claim
           </button>
@@ -55,11 +72,9 @@ export default function TableVocher(){
       <Table
         columns={columns}
         pagination={pagination}
-        dataSource={dataTesting?.map((data, i) => ({
-          responsden: data.responsden,
-          code: `KDV00R${i + 1}`,
+        dataSource={data?.map((data, i) => ({
+          ...data,
           index: i + 1,
-          status: status
         })
         )}
       />

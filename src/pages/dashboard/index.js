@@ -1,13 +1,22 @@
-'use client';
-
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { BarChartHome } from '@/components/chart/BarChart';
 import NavigationDashboard from '@/components/navigasi/NavigasiDashboard';
 import CardSummary from '@/components/card/CardSummary';
 import { PieChartHome } from '@/components/chart/PieChart';
 import TableCustomer from '@/components/table/TablePelanggan';
+import { getToken } from '@/utils/server/localstorage';
 
 export default function Dashboard(){
+  const router = useRouter();
+  const userToken = getToken();
+
+  useEffect(() => {
+    if(!userToken){
+      router.push('/login');
+    }
+  }, []);
+
   return (
     <div>
       <NavigationDashboard page={'dashboard'}/>

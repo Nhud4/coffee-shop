@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Radio } from 'antd';
+import Server from '@/utils/server/server';
 import InputText from '../elements/input/InputText';
 import Button from '../elements/button/Button';
 import ModalToken from '../modal/Modal';
@@ -14,6 +15,10 @@ export default function TambahUlasan(){
   const [harga, setHarga] = useState('');
   const [pelayanan, setPelayanan] = useState('');
   const [openModal, setOpenModal] = useState(false);
+
+  const server = new Server();
+  const randomNumber = Math.random();
+
 
   const dataProduk = [
     { label: 'Enak', value: 'enak' },
@@ -45,9 +50,21 @@ export default function TambahUlasan(){
     setOpenModal(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setOpenModal(true);
+    const result = await server.inputData({
+      name:nama,
+      produk:produk,
+      pelayanan:pelayanan,
+      tempat:tempat,
+      harga:harga,
+      promosi:promosi,
+      token: randomNumber
+    });
+
+    if(result.code === 201){
+      setOpenModal(true);
+    }
   };
 
   const disabled = Boolean(nama && produk && harga && tempat && pelayanan && promosi);
@@ -146,7 +163,7 @@ export default function TambahUlasan(){
         </div>
       </form>
 
-      <ModalToken isOpen={openModal} handleColse={handleColse}/>
+      <ModalToken isOpen={openModal} handleColse={handleColse} name={nama} token={randomNumber}/>
     </div>
   );
 }

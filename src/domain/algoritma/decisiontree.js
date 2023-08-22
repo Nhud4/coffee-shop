@@ -35,35 +35,35 @@ export default function DecisionTree(payload){
       kesimpulan = 'Puas';
     }
 
-    if(produk === 'kurang_enak' && pelayanan === 'ranah'){
+    if(produk === 'kurang_enak' && pelayanan === 'ramah'){
       kesimpulan = 'Puas';
     }
 
-    if(produk === 'kurang_enak' && pelayanan === 'kurang_ranah' && promosi === 'menarik'){
+    if(produk === 'kurang_enak' && pelayanan === 'kurang_ramah' && promosi === 'menarik'){
       kesimpulan = 'Tidak Puas';
     }
 
-    if(produk === 'kurang_enak' && pelayanan === 'kurang_ranah' && promosi === 'kurang_menarik'){
+    if(produk === 'kurang_enak' && pelayanan === 'kurang_ramah' && promosi === 'kurang_menarik'){
       kesimpulan = 'Tidak Puas';
     }
 
-    if(produk === 'kurang_enak' && pelayanan === 'kurang_ranah' && tempat === 'nyaman'){
+    if(produk === 'kurang_enak' && pelayanan === 'kurang_ramah' && tempat === 'nyaman'){
       kesimpulan = 'Tidak Puas';
     }
 
-    if(produk === 'kurang_enak' && pelayanan === 'kurang_ranah' && tempat === 'kurang_nayaman'){
+    if(produk === 'kurang_enak' && pelayanan === 'kurang_ramah' && tempat === 'kurang_nayaman'){
       kesimpulan = 'Tidak Puas';
     }
 
-    if(produk === 'kurang_enak' && pelayanan === 'kurang_ranah' && harga === 'murah'){
+    if(produk === 'kurang_enak' && pelayanan === 'kurang_ramah' && harga === 'murah'){
       kesimpulan = 'Tidak Puas';
     }
 
-    if(produk === 'kurang_enak' && pelayanan === 'kurang_ranah' && harga === 'sedang'){
+    if(produk === 'kurang_enak' && pelayanan === 'kurang_ramah' && harga === 'sedang'){
       kesimpulan = 'Tidak Puas';
     }
 
-    if(produk === 'kurang_enak' && pelayanan === 'kurang_ranah' && harga === 'mahal'){
+    if(produk === 'kurang_enak' && pelayanan === 'kurang_ramah' && harga === 'mahal'){
       kesimpulan = 'Tidak Puas';
     }
 

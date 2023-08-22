@@ -38,7 +38,7 @@ async function findOne(params, collection){
   try{
     const client = await clientPromise;
     const connection = await client.db('coffee');
-    const recordset = await connection.collection('customers').findOne(params);
+    const recordset = await connection.collection(collection).findOne(params);
     if (_.isEmpty(recordset)) {
       return wrapper.data(null);
     }
