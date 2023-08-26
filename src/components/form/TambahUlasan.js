@@ -70,8 +70,6 @@ export default function TambahUlasan(){
 
     if(result.code === 201){
       setOpenModal(true);
-    }else{
-      alert('Terjadi Kesalahan');
     }
   };
 
