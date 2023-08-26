@@ -8,6 +8,8 @@ export default function TableCustomer(){
   const server = new Server();
   const [data, setData] = useState([]);
   const [meta, setMeta] = useState({});
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
 
   const list = async(params) => {
     const result = await server.listData(params);
@@ -19,10 +21,10 @@ export default function TableCustomer(){
 
   useEffect(() => {
     list({
-      page: 1,
-      size: 10,
+      page: page,
+      size: size,
     });
-  },[]);
+  },[page, size]);
 
   const columns = [
     {
@@ -67,19 +69,23 @@ export default function TableCustomer(){
     },
   ];
 
-  const pagination = {
-    current: 1,
-    pageSize: 10
-  };
-
   return(
     <div style={{ overflowX: 'auto' }}>
       <Table
         columns={columns}
-        pagination={pagination}
+        pagination={{
+          total: meta?.totalData || 1,
+          pageSize: size,
+          showSizeChanger: true,
+          pageSizeOptions: ['5', '10', '20', '30'],
+          onChange: (page, pageSize) => {
+            setPage(page);
+            setSize(pageSize);
+          },
+        }}
         dataSource={data?.map((data, i) => ({
           ...data,
-          index: i + 1
+          index: i + 1 + (Number(page) - 1) * size
         })
         )}
       />

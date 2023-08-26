@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function InputText({ label, onChange, value, className }){
+export default function InputText({ label, onChange, value, className, placeholder }){
   const styles = {
     activeBox: 'flex items-center p-2 rounded border-2 border-cyn-20 bg-cyn-20 h-[2.5rem]',
     inactiveBox: 'flex items-center p-2 rounded border-2 border-cyn-20 h-[2.5rem]',
@@ -19,6 +19,7 @@ export default function InputText({ label, onChange, value, className }){
           value={value}
           onChange={onChange}
           autoComplete="off"
+          placeholder={placeholder}
         />
       </div>
     </div>

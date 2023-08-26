@@ -21,7 +21,10 @@ export default class Server{
   }
 
   async listData(params){
-    const endPoint = `/api/list?page=${params.page}&size=${params.size}&sort=name`;
+    let endPoint = `/api/list?page=${params.page}&size=${params.size}&sort=name`;
+    if(params.search){
+      endPoint = `/api/list?page=${params.page}&size=${params.size}&sort=name&search=${params.search}`;
+    }
     const options ={
       method: 'GET',
     };
