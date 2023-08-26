@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 import Server from '@/utils/server/server';
 
-export default function TableVocher(){
+export default function TableVocher({ onClick }){
   const server = new Server();
   const [data, setData] = useState([]);
+  const [load, setLoad] = useState(false);
 
   const list = async(params) => {
     const result = await server.listData(params);
@@ -20,7 +21,18 @@ export default function TableVocher(){
       page: 1,
       size: 10,
     });
-  },[]);
+  },[load]);
+
+  const handleUpdate = async(value) => {
+    const result = await server.update(value);
+    if(result.code === 201){
+      alert('Berhasil Menggunakan Vocher');
+      setLoad(!load);
+    }else{
+      alert('Terjadi Kesalahan');
+    }
+  };
+
 
   const columns = [
     {
@@ -54,6 +66,7 @@ export default function TableVocher(){
           <button
             className={used? 'bg-nero-20 px-4 py-2 rounded-md text-white':'bg-cyn-20 px-4 py-2 rounded-md text-white'}
             disabled={used}
+            onClick={() => handleUpdate(value)}
           >
             Claim
           </button>

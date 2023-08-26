@@ -17,7 +17,7 @@ export default function TambahUlasan(){
   const [openModal, setOpenModal] = useState(false);
 
   const server = new Server();
-  const randomNumber = Math.random();
+  const randomNumber = Math.floor(Math.random() * Date.now()).toString(36);
 
 
   const dataProduk = [
@@ -48,6 +48,12 @@ export default function TambahUlasan(){
 
   const handleColse = () => {
     setOpenModal(false);
+    setNama('');
+    setProduk('');
+    setPromosi('');
+    setTempat('');
+    setHarga('');
+    setPelayanan('');
   };
 
   const handleSubmit = async (e) => {
@@ -64,6 +70,8 @@ export default function TambahUlasan(){
 
     if(result.code === 201){
       setOpenModal(true);
+    }else{
+      alert('Terjadi Kesalahan');
     }
   };
 

@@ -49,16 +49,16 @@ export default class Server{
     return result;
   }
 
-  async detailData(params){
-    const endPoint = `/api/data/detail/${params}`;
+  async update(params){
+    const endPoint = `/api/update/${params}`;
     const options ={
-      method: 'GET'
+      method: 'PUT'
     };
 
     const response = await fetch(endPoint, options);
     const result = await response.json();
 
-    return result.data;
+    return result;
   }
 
   async deleteData(params){
@@ -74,7 +74,7 @@ export default class Server{
   }
 
   async summary(){
-    const endPoint = '/api/data/summary';
+    const endPoint = '/api/summary';
     const options ={
       method: 'GET'
     };

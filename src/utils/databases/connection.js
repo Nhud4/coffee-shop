@@ -74,12 +74,12 @@ async function findPaginated(sortByfield, size, page, params, sortBy = null){
   }
 }
 
-async function countData(){
+async function countData(params){
   try{
     const client = await clientPromise;
     const connection = await client.db('coffee');
     const db = await connection.collection('customers');
-    const totalData = await db.countDocuments();
+    const totalData = await db.countDocuments(params);
 
     return wrapper.dataPage({
       totalData,

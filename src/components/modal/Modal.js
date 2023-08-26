@@ -15,7 +15,7 @@ export default function ModalToken({ isOpen, handleColse, name, token }){
         </p>
         <h1 className="text-xl font-semibold">Code Anda</h1>
         <div className="flex justify-center">
-          <p className="bg-cyn-20 px-4 py-2 rounded-md text-white text-x2l font-semibold">
+          <p className="bg-cyn-20 px-4 py-2 rounded-md text-white text-2xl font-semibold">
             {token}
           </p>
         </div>

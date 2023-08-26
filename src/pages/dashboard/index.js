@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { BarChartHome } from '@/components/chart/BarChart';
 import NavigationDashboard from '@/components/navigasi/NavigasiDashboard';
@@ -6,15 +6,29 @@ import CardSummary from '@/components/card/CardSummary';
 import { PieChartHome } from '@/components/chart/PieChart';
 import TableCustomer from '@/components/table/TablePelanggan';
 import { getToken } from '@/utils/server/localstorage';
+import Server from '@/utils/server/server';
 
 export default function Dashboard(){
   const router = useRouter();
   const userToken = getToken();
+  const server = new Server();
+  const [dataSummary, setDataSummary] = useState({});
 
   useEffect(() => {
     if(!userToken){
       router.push('/login');
     }
+  }, []);
+
+  const result = async() => {
+    const getData = await server.summary();
+    if(getData.code === 200){
+      setDataSummary(getData.data);
+    }
+
+  };
+  useEffect(() => {
+    result();
   }, []);
 
   return (
@@ -24,29 +38,29 @@ export default function Dashboard(){
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
           <CardSummary
             title="Jumlah Ulasan"
-            label="20 Ulasan"
+            label={`${dataSummary?.totalData} Ulasan` || '0 Ulasan'}
           />
           <CardSummary
             title="Julmah Ulasan Puas"
-            label="20 Ulasan"
+            label={`${dataSummary?.puas} Ulasan` || '0 Ulasan'}
           />
           <CardSummary
             title="Jumlah Ulasan Tidak Puas"
-            label="20 Ulasan"
+            label={`${dataSummary?.tidakPuas} Ulasan` || '0 Ulasan'}
           />
           <CardSummary
             title="Vocher Digunakan"
-            label="10"
-            totalData="20"
+            label={dataSummary?.usedToken}
+            totalData={dataSummary?.totalToken}
           />
         </div>
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="col-span-3">
-            <BarChartHome />
+            <BarChartHome value={dataSummary}/>
           </div>
 
-          <PieChartHome />
+          <PieChartHome value={dataSummary}/>
         </div>
 
         <div className="mt-6 bg-white p-4 rounded-lg shadow-1">

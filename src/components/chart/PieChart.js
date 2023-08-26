@@ -6,12 +6,12 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export function PieChartHome() {
+export function PieChartHome({ value }) {
   const data = {
     labels: ['Tidak Puas', 'Puas'],
     datasets: [
       {
-        data: [5, 15],
+        data: [value?.tidakPuas || 0, value?.puas || 0,],
         backgroundColor: [
           'rgba(255, 117, 85, 1)',
           'rgba(35, 123, 159, 1)',
@@ -26,7 +26,7 @@ export function PieChartHome() {
 
   return(
     <>
-      <div className="py-4 px-2 rounded-lg bg-white shadow-1">
+      <div className="py-6 px-2 rounded-lg bg-white shadow-1">
         <Doughnut
           data={data}
           options={{
@@ -39,14 +39,14 @@ export function PieChartHome() {
         />
         <div className="flex justify-between items-center mt-8 px-4">
           <div className="border border-nero-20 rounded-md text-sm px-4 py-2">
-            <div className="text-center font-medium">5 Pelanggan</div>
+            <div className="text-center font-medium">{value?.puas || 0} Pelanggan</div>
             <div className="flex items-center">
               <div className="bg-primary-10 w-3 h-3 rounded-full mr-2"/>
               <div className="text-primary-10">Puas</div>
             </div>
           </div>
           <div className="border border-nero-20 rounded-md text-sm px-4 py-2">
-            <div className="text-center font-medium">15 Pelanggan</div>
+            <div className="text-center font-medium">{value?.tidakPuas || 0} Pelanggan</div>
             <div className="flex items-center">
               <div className="bg-danger-10 w-3 h-3 rounded-full mr-2"/>
               <div className="text-danger-10">Tidak Puas</div>

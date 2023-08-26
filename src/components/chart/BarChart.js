@@ -33,18 +33,30 @@ const labels = [
   'Promosi'
 ];
 
-export function BarChartHome() {
+export function BarChartHome({ value }) {
   const data = {
     labels,
     datasets: [
       {
         label: 'Puas',
-        data: [10, 20, 30, 10, 20,],
+        data: [
+          value?.puasProduk || 0,
+          value?.puasPelayanan || 0,
+          value?.puasHarga || 0,
+          value?.puasTempat || 0,
+          value?.puasPromosi || 0,
+        ],
         backgroundColor: 'rgba(31, 40, 85, 1)',
       },
       {
         label: 'Tidak Puas',
-        data: [30, 10, 20, 30, 40,],
+        data: [
+          value?.tidakProduk || 0,
+          value?.tidakPelayanan || 0,
+          value?.tidakHarga || 0,
+          value?.tidakTempat || 0,
+          value?.tidakPromosi || 0,
+        ],
         backgroundColor: 'rgba(0, 147, 173, 1)',
       },
     ],
