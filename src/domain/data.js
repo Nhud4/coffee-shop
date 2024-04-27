@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import { ObjectId } from 'mongodb';
 import { NotFoundError, InternalServerError, UnprocessableEntityError } from '@/utils/helper/error';
-import { findOne, insertOne, findPaginated, countData, updateOne } from '@/utils/databases/connection';
+import { findOne, insertOne, findPaginated, countData, updateOne, findAll } from '@/utils/databases/connection';
 import DecisionTree from './algoritma/decisiontree';
+import DecisionTree2 from './algoritma/decision2';
 
 export default class Data{
   async insertData(payload){
@@ -37,6 +38,31 @@ export default class Data{
       if(insert.err)throw { message: 'fail to insert data customers' };
 
       return insert;
+    }catch(err){
+      return { err: new InternalServerError(err.message) };
+    }
+  }
+
+  async decision(){
+    try{
+      const getData = await findAll('customers');
+      if(getData.err) throw { message: 'fail to get data' };
+
+      const data = getData.data.map((item) => {
+        const payload = {
+          produk: item.produk,
+          promosi: item.promosi,
+          tempat: item.tempat,
+          harga: item.harga,
+          pelayanan: item.pelayanan
+        };
+        return {
+          ...item,
+          kepuasan: DecisionTree2(payload)
+        };
+      });
+
+      return data;
     }catch(err){
       return { err: new InternalServerError(err.message) };
     }
